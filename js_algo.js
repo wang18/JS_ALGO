@@ -331,10 +331,123 @@ function combinations(str){
    return res;
 }
 
-console.log(combinations("dog"));
+/*
+Returns a passed string with letters in alphabetical order
+ */
+function alphabet_order(str){
+    return str.split('').sort().join('');
+}
+
+/*
+Converts the first letter of each word of a string in upper case
+ */
+function uppercase(str) {
+    var words=str.split(' ');
+    newStrArr=[];
+    words.forEach(function (word) {
+        var eachChar = word.split('');
+        eachChar[0]=eachChar[0].toUpperCase();
+        newStrArr.push(eachChar.join(''));
+    });
+    return newStrArr.join(' ');
+}
+
+/*
+Find the longest word within a string
+ */
+function find_longest_word(str) {
+    var arr = str.split(' '),
+        ind=-1,
+        tmpL=-1,
+        i=0;
+    arr.forEach(function (e, i) {
+        if(e.length>tmpL){
+            ind=i;
+            tmpL=e.length;
+        }
+    });
+    return arr[ind];
+}
+
+/*
+Counts the number of vowels within a string
+ */
+function vowel_count(str){
+    var s=str.toLowerCase().split('');
+    var se= new Set(['a','e','i','o','u']);
+    var c=0;
+    s.forEach(function (e) {
+        if(se.has(e))
+            c+=1;
+    })
+    return c;
+}
 
 
+/*
+Second lowest and second greatest numbers from an array
+ */
+function Second_Greatest_Lowest(arr) {
+    var sArr=arr.sort(function (a, b) {
+        return a-b;
+    })
+    return [sArr[1], sArr[sArr.length-2]];
 
 
+}
 
+/*
+Find a perfect number
+ */
+function is_perfect(n) {
+    var d=0;
+    for(var i=1;i<n;i++){
+        if(n%i==0){
+            d+=i;
+        }
+    }
+    console.log(d==n);
+    return (d==n)&&(n!=0);
+}
 
+/*
+Compute the factors of a positive integers
+ */
+function factors(n) {
+    var arr=[];
+    for(var i=1;i<=n;i++){
+        if(n%i==0){
+            arr.push(i);
+        }
+    }
+    return arr;
+}
+
+/*
+Convert an amount to coins
+ */
+function amountTocoins(n,arr) {
+    var t=n,i=0,r=[];
+    while(i<arr.length){
+        if(t>=arr[i]){
+            r.push(arr[i]);
+            t=t-arr[i];
+        }else{
+            i+=1;
+        }
+    }
+    return r;
+}
+
+/*
+Compute the value of bn where n is the exponent and b is the bases
+ */
+function exp(b, n) {
+    var ans = 1,i=1;
+    while(i<=n){
+        ans*=b;
+        i+=1;
+    }
+    return ans;
+
+}
