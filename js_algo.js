@@ -10,7 +10,7 @@ https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-pract
 palindrome
 */
 function palindrome1(str){
-	var re=/[\w_]/g;
+	var re=/[\W_]/g;
 	var newStr=str.toLowerCase().trim().replace(re,'');
 	var resStr = newStr.split('').reverse().join('');
 	return newStr == resStr;
@@ -219,13 +219,119 @@ function removeDuplicateChar(str) {
     }
     return newA.join('');
 }
-console.log(removeDuplicateChar('Learn more javascript dude') === "Lnmojvsciptu");
 
+/*
+Sum of two
+*/
 
+function sumFinder1(arr, n) {
+    for(var i=0;i<arr.length;i++){
+        for(var j=i+1;j<arr.length;j++){
+            if(arr[i]+arr[j]==n){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+function sumFinder2(arr, sum) {
+    var differ = {};
+    for(var i =0; i<arr.length; i++){
+        var substract = sum - arr[i];
 
+        if(differ[substract])
+            return true;
+        else
+            differ[arr[i]] = true;
+    }
 
+    return false;
+}
 
+/*
+largest Sum
+ */
+function LS1(arr) {
+    var newArr=arr.sort(function (a, b) {
+        return a-b;
+    });
+    return newArr[newArr.length-1]+newArr[newArr.length-2];
+}
+function LS2(arr) {
+   var len=arr.length,
+        a=-1,
+        b=-1;
+   for(var i=0;i<len;i++){
+       if(arr[i]>a&&arr[i]>b){
+           b=a;
+           a=arr[i];
+       }else if(arr[i]<a && arr[i]>b){
+           b=arr[i];
+       }
+   }
+   return a+b;
+}
 
+/*
+counting zeros
+ */
+
+function countZero(n){
+    var c=0;
+    while(n>0){
+        c+=Math.floor(n/10);
+        n=n/10
+        if(n<1){
+            break;
+        }
+    }
+    return c;
+}
+
+/*
+subString
+ */
+function subStringFinder(str, subStr){
+    var l1=str.length, l2=subStr.length;
+    for(var i=0;i<=l1-l2;i++){
+        //var s=i;
+        for(var j=0;j<l2;j++){
+            //console.log(j);
+            if(str[i+j]!=subStr[j]){
+                break;
+            }
+            if(j==(l2-1)){
+                return i;
+            }
+        }
+    }
+    return -1;
+    //return str.indexOf(subStr);
+}
+
+/*
+String combination
+ */
+function combinations(str){
+   var arr1=str.split("");
+   var res=[];
+   var tmp="";
+   var bitNum=Math.pow(2,arr1.length);
+   for(var i=0;i<bitNum;i++){
+       tmp="";
+       for(var j=0;j<arr1.length;j++){
+           if(i & Math.pow(2,j)){
+               tmp+=arr1[j];
+           }
+       }
+       if(tmp!==""){
+           res.push(tmp);
+       }
+   }
+   return res;
+}
+
+console.log(combinations("dog"));
 
 
 
