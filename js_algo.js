@@ -451,3 +451,64 @@ function exp(b, n) {
     return ans;
 
 }
+
+/*
+Extract unique characters from a string
+ */
+function unique_char(str) {
+    var r='';
+    for(var i=0; i<str.length; i++){
+        if(r.indexOf(str[i])==-1){
+            r+=str[i];
+        }
+    }
+    return r;
+}
+
+/*
+Number of occurrences of each letter in specified string
+ */
+function Char_Counts(str) {
+    var r ={};
+    for(var i=0;i<str.length;i++){
+        if(str[i]!==' '){
+            if(!r[str[i]]){
+                r[str[i]]=1;
+            }else {
+                r[str[i]]+=1;
+            }
+        }
+    }
+    return r;
+}
+
+/*
+ Search JavaScript arrays with a binary search
+ */
+function array_binarySearch(arr, n) {
+    var i=0,l=arr.length-1,m;
+    while(i<=l){
+        m=Math.floor((i+l)/2);
+        if(arr[m]==n){
+            return m;
+        }else if(arr[m]>n){
+            l=m-1;
+        }else{
+            i=m+1;
+        }
+    }
+
+}
+//var myArray = [1, 2, 3, 5, 6, 7, 10, 11, 14, 15, 17, 19, 20, 22, 23];
+//console.log(array_binarySearch(myArray, 6));
+
+/*
+Bigger elements in an array
+ */
+function BiggerElements(n) {
+    return function (v) {
+        return v>n;
+    }
+}
+//var result = [11, 45, 4, 31, 64, 10]. filter(BiggerElements(10));
+//console.log(result);
